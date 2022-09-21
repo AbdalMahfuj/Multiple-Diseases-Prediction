@@ -1,0 +1,466 @@
+{% extends 'base.html' %}
+{%block title%}Multi Billionaire | A trustworthy E-commerce site{%endblock title%}
+{% block body %}
+{% load static %}
+<style>
+
+{% if review == "1"%}
+.review {
+    display: none;
+}
+{%endif%}
+.rating {
+    border: none;
+    float:left;
+
+}
+
+.myratings {
+    font-size: 50px;
+    color: green
+}
+
+.rating>[id^="1star"] {
+    display: none
+}
+.rating>[id^="2star"] {
+    display: none
+}
+.rating>[id^="3star"] {
+    display: none
+}
+.rating>[id^="4star"] {
+    display: none
+}
+.rating>[id^="5star"] {
+    display: none
+}
+
+.rating>label:before {
+    margin: 5px;
+    font-size: 2.0em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005"
+}
+
+.rating>.half:before {
+    content: "\f089";
+    position: absolute
+}
+
+.rating>label {
+    color: #ddd;
+    float: right
+}
+
+.rating>[id^="1star"]:checked~label,
+.rating:not(:checked)>label:hover,
+.rating:not(:checked)>label:hover~label {
+    color: #FFD700
+}
+
+.rating>[id^="1star"]:checked+label:hover,
+.rating>[id^="1star"]:checked~label:hover,
+.rating>label:hover~[id^="1star"]:checked~label,
+.rating>[id^="1star"]:checked~label:hover~label {
+    color: #FFED85
+}
+.rating>[id^="2star"]:checked~label,
+.rating:not(:checked)>label:hover,
+.rating:not(:checked)>label:hover~label {
+    color: #FFD700
+}
+
+.rating>[id^="2star"]:checked+label:hover,
+.rating>[id^="2star"]:checked~label:hover,
+.rating>label:hover~[id^="2star"]:checked~label,
+.rating>[id^="2star"]:checked~label:hover~label {
+    color: #FFED85
+}
+.rating>[id^="3star"]:checked~label,
+.rating:not(:checked)>label:hover,
+.rating:not(:checked)>label:hover~label {
+    color: #FFD700
+}
+
+.rating>[id^="3star"]:checked+label:hover,
+.rating>[id^="3star"]:checked~label:hover,
+.rating>label:hover~[id^="3star"]:checked~label,
+.rating>[id^="3star"]:checked~label:hover~label {
+    color: #FFED85
+}
+.rating>[id^="4star"]:checked~label,
+.rating:not(:checked)>label:hover,
+.rating:not(:checked)>label:hover~label {
+    color: #FFD700
+}
+
+.rating>[id^="4star"]:checked+label:hover,
+.rating>[id^="4star"]:checked~label:hover,
+.rating>label:hover~[id^="4star"]:checked~label,
+.rating>[id^="4star"]:checked~label:hover~label {
+    color: #FFED85
+}
+.rating>[id^="5star"]:checked~label,
+.rating:not(:checked)>label:hover,
+.rating:not(:checked)>label:hover~label {
+    color: #FFD700
+}
+
+.rating>[id^="5star"]:checked+label:hover,
+.rating>[id^="5star"]:checked~label:hover,
+.rating>label:hover~[id^="5star"]:checked~label,
+.rating>[id^="5star"]:checked~label:hover~label {
+    color: #FFED85
+}
+
+.reset-option {
+    display: none
+}
+
+.reset-button {
+    margin: 6px 12px;
+    background-color: rgb(255, 255, 255);
+    text-transform: uppercase
+}
+.ratehtag{
+font-family: 'Poppins';
+    font-size: 20px;
+    font-weight: 600;
+
+}
+
+.result{
+ margin: auto;
+  width: 40%;
+
+}
+.resultimg{
+ display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+    @media only screen and (max-width: 1000px) {
+.result{
+
+}
+</style>
+<div class="uni-checkout">
+                <div class="uni-banner-default uni-background-1">
+                    <div class="container">
+                        <!-- Page title -->
+                        <div class="page-title">
+                            <div class="page-title-inner">
+                                <h1>{{disease}} Prediction Result</h1>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+    <div style="font-family: 'Poppins';
+    font-size: 20px;
+    font-weight: 600;">
+        {%if covid%}
+        <div class="result">
+        <img src="{{image.url}}" class="resultimg">
+            <h3 style="text-align: center;"><div style="color:green">{{label}}</div></h3>
+            <div class="uni-processbar-thick" style="margin-top:-4px">
+                            <h2 style="text-align: center;">
+                                Accuracy
+                            </h2>
+                            <div class="progress skill-bar ">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{accuracy}}" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+                                    <span class="skill"><i class="val">{{accuracy}}%</i></span>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+            </div>
+
+
+        {%else%}
+        <div style="font-family: 'Poppins';
+    font-size: 30px;
+    font-weight: 600;">
+    {%if result == 0%}
+        <h3 style="text-align: center;"><div style="color:green">Congrats!</div> You are Healthy</h3>
+    {%else%}
+    <h3 style="text-align: center;"><div style="color:red">Sorry!</div>You are affected by {{disease}}</h3>
+    {%endif%}
+                            <div style="width:1000;height:100;display: flex;
+justify-content: center;margin-left:30px">
+{{ graph_div|safe }}
+</div>
+        </div>
+    {%endif%}
+    </div>
+       <div class="uni-home-our-services review">
+                    <div class="uni-shortcode-icons-box-5">
+                        <div class="container">
+
+                            <div class="uni-home-title">
+                                <h3>Please rate your experience</h3>
+                                <div class="uni-underline"></div>
+                            </div>
+                            <div class="uni-home-title" >
+
+			<form action="{% url 'Detector:rating'%}" method="POST">
+					{% csrf_token %}
+
+					<div class="ratehtag">
+						<!-- Rating stars -->
+						<h4>Are you satisfied with the productivity of the app(how it serve it's purpose)?</h4>
+                        <input name="disease" type="hidden" value={{disease}} >
+                        {%if covid%}
+                        <input name="result" type="hidden" value={{disease}} >
+                        {%else%}
+                        <input name="result" type="hidden" value={{result}} >
+                        {%endif%}
+                        <fieldset class="rating"> <input type="radio" id="1star5" name="1rating" value="5" /><label class="full" for="1star5" title="Awesome - 5 stars">
+
+					 </label>
+						 <input type="radio" id="1star4half" name="1rating" value="4.5" /><label class="half" for="1star4half" title="Pretty good - 4.5 stars"></label>
+						 <input type="radio" id="1star4" name="1rating" value="4" /><label class="full" for="1star4" title="Pretty good - 4 stars"></label>
+						 <input type="radio" id="1star3half" name="1rating" value="3.5" /><label class="half" for="1star3half" title="Meh - 3.5 stars"></label>
+						 <input type="radio" id="1star3" name="1rating" value="3" /><label class="full" for="1star3" title="Meh - 3 stars"></label>
+						 <input type="radio" id="1star2half" name="1rating" value="2.5" /><label class="half" for="1star2half" title="Kinda bad - 2.5 stars"></label>
+						 <input type="radio" id="1star2" name="1rating" value="2" /><label class="full" for="1star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="1star1half" name="1rating" value="1.5" /><label class="half" for="1star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="1star1" name="1rating" value="1" /><label class="full" for="1star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="1starhalf" name="1rating" value="0.5" /><label class="half" for="1starhalf" title="Sucks big time - 0.5 stars"></label>
+                            <input type="radio" class="reset-option" name="1rating" value="reset" /> </fieldset>
+                        <br>
+						<br>
+						<br>
+                        <h4>Are you satisfied with the consistency of the result?</h4>
+                        <fieldset class="rating">
+                            <input type="radio" id="2star5" name="2rating" value="5" /><label class="full" for="2star5" title="Awesome - 5 stars">
+
+					 </label>
+						 <input type="radio" id="2star4half" name="2rating" value="4.5" /><label class="half" for="2star4half" title="Pretty good - 4.5 stars"></label>
+						 <input type="radio" id="2star4" name="2rating" value="4" /><label class="full" for="2star4" title="Pretty good - 4 stars"></label>
+						 <input type="radio" id="2star3half" name="2rating" value="3.5" /><label class="half" for="2star3half" title="Meh - 3.5 stars"></label>
+						 <input type="radio" id="2star3" name="2rating" value="3" /><label class="full" for="2star3" title="Meh - 3 stars"></label>
+						 <input type="radio" id="2star2half" name="rating" value="2.5" /><label class="half" for="2star2half" title="Kinda bad - 2.5 stars"></label>
+						 <input type="radio" id="2star2" name="2rating" value="2" /><label class="full" for="2star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="2star1half" name="2rating" value="1.5" /><label class="half" for="2star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="2star1" name="2rating" value="1" /><label class="full" for="2star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="2starhalf" name="2rating" value="0.5" /><label class="half" for="2starhalf" title="Sucks big time - 0.5 stars"></label>
+                            <input type="radio" class="reset-option" name="2rating" value="reset" /> </fieldset>
+                        <br>
+						<br>
+						<br>
+                                                <h4>Are you satisfied with the engagement level of the app?</h4>
+                        <fieldset class="rating"> <input type="radio" id="3star5" name="3rating" value="5" /><label class="full" for="3star5" title="Awesome - 5 stars">
+
+					 </label>
+						 <input type="radio" id="3star4half" name="3rating" value="4.5" /><label class="half" for="3star4half" title="Pretty good - 4.5 stars"></label>
+						 <input type="radio" id="3star4" name="3rating" value="4" /><label class="full" for="3star4" title="Pretty good - 4 stars"></label>
+						 <input type="radio" id="3star3half" name="3rating" value="3.5" /><label class="half" for="3star3half" title="Meh - 3.5 stars"></label>
+						 <input type="radio" id="3star3" name="3rating" value="3" /><label class="full" for="3star3" title="Meh - 3 stars"></label>
+						 <input type="radio" id="3star2half" name="3rating" value="2.5" /><label class="half" for="3star2half" title="Kinda bad - 2.5 stars"></label>
+						 <input type="radio" id="3star2" name="3rating" value="2" /><label class="full" for="3star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="3star1half" name="3rating" value="1.5" /><label class="half" for="3star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="3star1" name="3rating" value="1" /><label class="full" for="3star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="3starhalf" name="3rating" value="0.5" /><label class="half" for="3starhalf" title="Sucks big time - 0.5 stars"></label>
+                            <input type="radio" class="reset-option" name="3rating" value="reset" /> </fieldset>
+                        <br>
+						<br>
+						<br>
+                        <h4>Are you satisfied with the design of the app?</h4>
+                        <fieldset class="rating"> <input type="radio" id="4star5" name="4rating" value="5" /><label class="full" for="4star5" title="Awesome - 5 stars">
+
+					 </label>
+						 <input type="radio" id="4star4half" name="4rating" value="4.5" /><label class="half" for="4star4half" title="Pretty good - 4.5 stars"></label>
+						 <input type="radio" id="4star4" name="4rating" value="4" /><label class="full" for="4star4" title="Pretty good - 4 stars"></label>
+						 <input type="radio" id="4star3half" name="4rating" value="3.5" /><label class="half" for="4star3half" title="Meh - 3.5 stars"></label>
+						 <input type="radio" id="4star3" name="4rating" value="3" /><label class="full" for="4star3" title="Meh - 3 stars"></label>
+						 <input type="radio" id="4star2half" name="4rating" value="2.5" /><label class="half" for="4star2half" title="Kinda bad - 2.5 stars"></label>
+						 <input type="radio" id="4star2" name="4rating" value="2" /><label class="full" for="4star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="4star1half" name="4rating" value="1.5" /><label class="half" for="4star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="4star1" name="4rating" value="1" /><label class="full" for="4star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="4starhalf" name="4rating" value="0.5" /><label class="half" for="4starhalf" title="Sucks big time - 0.5 stars"></label>
+                            <input type="radio" class="reset-option" name="4rating" value="reset" /> </fieldset>
+                        <br>
+						<br>
+						<br>
+                        <h4>Is the Interface easy to use?</h4>
+                        <fieldset class="rating"> <input type="radio" id="5star5" name="5rating" value="5" /><label class="full" for="5star5" title="Awesome - 5 stars">
+
+					 </label>
+						 <input type="radio" id="5star4half" name="5rating" value="4.5" /><label class="half" for="5star4half" title="Pretty good - 4.5 stars"></label>
+						 <input type="radio" id="5star4" name="5rating" value="4" /><label class="full" for="5star4" title="Pretty good - 4 stars"></label>
+						 <input type="radio" id="5star3half" name="5rating" value="3.5" /><label class="half" for="5star3half" title="Meh - 3.5 stars"></label>
+						 <input type="radio" id="5star3" name="5rating" value="3" /><label class="full" for="5star3" title="Meh - 3 stars"></label>
+						 <input type="radio" id="5star2half" name="5rating" value="2.5" /><label class="half" for="5star2half" title="Kinda bad - 2.5 stars"></label>
+						 <input type="radio" id="5star2" name="5rating" value="2" /><label class="full" for="5star2" title="Kinda bad - 2 stars"></label>
+                            <input type="radio" id="5star1half" name="5rating" value="1.5" /><label class="half" for="5star1half" title="Meh - 1.5 stars"></label>
+                            <input type="radio" id="5star1" name="5rating" value="1" /><label class="full" for="5star1" title="Sucks big time - 1 star"></label>
+                            <input type="radio" id="5starhalf" name="5rating" value="0.5" /><label class="half" for="5starhalf" title="Sucks big time - 0.5 stars"></label>
+                            <input type="radio" class="reset-option" name="5rating" value="reset" /> </fieldset>
+                        <br>
+						<br>
+						<br>
+<!--						Share your experience:-->
+<!--                        <br>-->
+<!--                        <br>-->
+
+<!--						<textarea name="review" rows="4" class="form-control"></textarea>-->
+<!--						<br>-->
+
+
+                    <div class="btn-all">
+                    <button type="submit" value="Submit"  data-value="Place order" class="btn btn-primary">Submit</button>
+
+                     </div>
+
+					</div>
+
+				</form>
+
+
+
+
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+    <div class="uni-home-our-services">
+                    <div class="uni-shortcode-icons-box-5">
+                        <div class="container">
+
+                            <div class="uni-home-title">
+                                <h3>You may also try</h3>
+                                <div class="uni-underline"></div>
+                            </div>
+
+                            <div class="row" >
+                                <div class="col-md-4 col-sm-6" style="a:hover {color: blue;}">
+                                    <a href="{%url 'Detector:diabetes'%}">
+                                    <div class="uni-shortcode-icons-box-5-default">
+                                        <div class="item-icons-title">
+                                            <div class="col-md-4 uni-clear-padding">
+                                                <div class="item-icons">
+                                                    <img src="/static/images/icons_box/icon_4/icon-4.png" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 uni-clear-padding">
+                                                <div class="item-title">
+
+                                                    <h4>Diabetes detection </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                     <a href="{%url 'Detector:heart'%}">
+                                    <div class="uni-shortcode-icons-box-5-default">
+                                        <div class="item-icons-title">
+                                            <div class="col-md-4 uni-clear-padding">
+                                                <div class="item-icons">
+                                                    <img src="/static/images/icons_box/icon_4/icon-5.png" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 uni-clear-padding">
+                                                <div class="item-title">
+                                                    <h4>Coronary Heart Disease detection</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                     </a>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                     <a href="{%url 'Detector:liver'%}">
+                                    <div class="uni-shortcode-icons-box-5-default">
+                                        <div class="item-icons-title">
+                                            <div class="col-md-4 uni-clear-padding">
+                                                <div class="item-icons">
+                                                    <img src="/static/images/icons_box/icon_4/icon-3.png" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 uni-clear-padding">
+                                                <div class="item-title">
+                                                    <h4>Liver Disease detection</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                     </a>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <a href="{%url 'Detector:kidney'%}">
+                                    <div class="uni-shortcode-icons-box-5-default">
+                                        <div class="item-icons-title">
+                                            <div class="col-md-4 uni-clear-padding">
+                                                <div class="item-icons">
+                                                    <img src="/static/images/icons_box/icon_4/icon-1.png" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 uni-clear-padding">
+                                                <div class="item-title">
+                                                    <h4>Kidney Disease detection</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <a href="{%url 'Detector:covid'%}">
+                                    <div class="uni-shortcode-icons-box-5-default">
+                                        <div class="item-icons-title">
+                                            <div class="col-md-4 uni-clear-padding">
+                                                <div class="item-icons">
+                                                    <img src="/static/images/icons_box/icon_4/icon-2.png" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 uni-clear-padding">
+                                                <div class="item-title">
+                                                    <h4>Covid-19 detection</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+</div>
+
+
+<script>
+
+
+
+
+
+</script>
+{%endblock%}

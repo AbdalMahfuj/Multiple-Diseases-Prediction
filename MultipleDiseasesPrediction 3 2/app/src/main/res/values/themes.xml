@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MultipleDiseasesPrediction" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">#3F97DA</item>
+        <item name="colorPrimaryVariant">#3F97DA</item>
+        <item name="colorOnPrimary">#3F97DA</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">#3F97DA</item>
+        <item name="colorSecondaryVariant">#3F97DA</item>
+        <item name="colorOnSecondary">#3F97DA</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+</resources>

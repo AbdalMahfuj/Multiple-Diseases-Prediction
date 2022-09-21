@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/parentMain"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:background="@mipmap/background1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diabetes Prediction"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:textFontWeight="600"
+            android:textSize="25sp"
+            android:textAllCaps="true"
+            >
+        </TextView>
+
+    </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:text="ENTER THE FOLLOWING PARAMETERS"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:elevation="15dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="0.6"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:text="Age"
+                    android:textSize="15sp"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:inputType="number"
+                    android:id="@+id/age"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1.4"
+                    android:background="@drawable/edit_text_border"
+                    android:hint="Enter Age"
+                    android:imeOptions="actionNext"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:text="31"
+                    android:textColor="@color/black" /> </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.6"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="BMI"
+                        android:textSize="15sp"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:id="@+id/bmi"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1.4"
+                        android:background="@drawable/edit_text_border"
+                        android:hint="Enter BMI"
+                        android:imeOptions="actionNext"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:text="26.6"
+                        android:textColor="@color/black" /> </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.6"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="Insulin"
+                        android:textSize="15sp"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:id="@+id/insulin"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1.4"
+                        android:background="@drawable/edit_text_border"
+                        android:hint="Enter Insulin value"
+                        android:imeOptions="actionNext"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:text="0"
+                        android:textColor="@color/black" /> </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.6"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="Blood Pressure"
+                        android:textSize="15sp"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:id="@+id/blood_pressure"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1.4"
+                        android:background="@drawable/edit_text_border"
+                        android:hint="Enter Blood Pressure value"
+                        android:imeOptions="actionNext"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:text="80"
+                        android:textColor="@color/black" /> </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.6"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="Skin Thickness"
+                        android:textSize="15sp"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:id="@+id/skin_thickness"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1.4"
+                        android:background="@drawable/edit_text_border"
+                        android:hint="Enter Your Skin Thickness"
+                        android:imeOptions="actionNext"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:text="29"
+                        android:textColor="@color/black" /> </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.6"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="Glucose"
+                        android:textSize="15sp"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:id="@+id/glucose"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1.4"
+                        android:background="@drawable/edit_text_border"
+                        android:hint="Enter Glucose Value"
+                        android:imeOptions="actionNext"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:text="85"
+                        android:textColor="@color/black" /> </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.6"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="Pregnancies"
+                        android:textSize="15sp"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:inputType="number"
+                        android:id="@+id/pregnancies"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1.4"
+                        android:background="@drawable/edit_text_border"
+                        android:hint="Enter Pregnancies value"
+                        android:imeOptions="actionNext"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:text="1"
+                        android:textColor="@color/black" /> </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.6"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="Diabetes PedigreeFunction"
+                        android:textSize="15sp"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:id="@+id/diabetes_pedigreeFunction"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1.4"
+                        android:background="@drawable/edit_text_border"
+                        android:hint="Enter value"
+                        android:imeOptions="actionNext"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:text="0.351"
+                        android:textColor="@color/black" /> </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+
+                    >
+
+
+
+                <Button
+                    android:id="@+id/submitbtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:backgroundTint="#3f97da"
+                    android:layout_margin="20dp"
+                    android:textStyle="bold"
+                    android:background="@mipmap/background1"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    android:text="Submit"/>
+
+
+
+                </LinearLayout>
+
+
+
+
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+</LinearLayout>
